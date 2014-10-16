@@ -53,7 +53,7 @@
         
         // Print the block and thread sleep and which NSInvocation was called out of the array so a failing test can be reconstructed as a permanent test.
         
-        NSLog(@"\n\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n\t[NSThread sleepForTimeInterval:%f];\n\t######### Replace this line with the invocation at index %d of your invocation array #########\n});\n\n", seconds, arrayIndex);        
+        NSLog(@"\n\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n\t[NSThread sleepForTimeInterval:%f];\n\t######### Replace this line with the invocation at index %zd of your invocation array #########\n});\n\n", seconds, arrayIndex);        
         
         if(i == permutations - 1)NSLog(@"------------------------ End of test documentation ------------------------"); // Note the last round.  
         
