@@ -49,7 +49,7 @@
         
         NSTimeInterval seconds = (((float)arc4random() / 0x100000000) * (maximumSeconds - minimumSeconds) + minimumSeconds); // A random float for the NSTimeInterval.
         
-        NSInteger arrayIndex = arc4random_uniform([arrayOfNSInvocations count]); // A random integer for calling random NSInvocations out of the array.
+        NSInteger arrayIndex = arc4random_uniform((u_int32_t)[arrayOfNSInvocations count]); // A random integer for calling random NSInvocations out of the array.
         
         // Print the block and thread sleep and which NSInvocation was called out of the array so a failing test can be reconstructed as a permanent test.
         
