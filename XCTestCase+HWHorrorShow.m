@@ -45,7 +45,7 @@
     
     NSLog(@"To remove timestamps in order to use a created test, remove this regex pattern from the following and replace the invocation indices with your actual method: 20[0-9][0-9]-.*?]\n\n------------------------ Test documentation follows ------------------------");
     
-    for (int i = 0; i < permutations; i++) {
+    for (NSInteger i = 0; i < permutations; i++) {
         
         NSTimeInterval seconds = (((float)arc4random() / 0x100000000) * (maximumSeconds - minimumSeconds) + minimumSeconds); // A random float for the NSTimeInterval.
         
@@ -53,13 +53,15 @@
         
         // Print the block and thread sleep and which NSInvocation was called out of the array so a failing test can be reconstructed as a permanent test.
         
-        NSLog(@"\n\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n\t[NSThread sleepForTimeInterval:%f];\n\t######### Replace this line with the invocation at index %zd of your invocation array #########\n});\n\n", seconds, arrayIndex);        
+        
+        
+        NSLog(@"\n\n// Invocation number %ld\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n\t[NSThread sleepForTimeInterval:%f];\n\t######### Replace this line with the invocation at index %zd of your invocation array #########\n});\n\n", i, seconds, arrayIndex);        
         
         if(i == permutations - 1)NSLog(@"------------------------ End of test documentation ------------------------"); // Note the last round.  
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ // Do the actual async call now.
-            
             [NSThread sleepForTimeInterval:seconds]; // Sleep for the random NSTimeInterval
+            NSLog(@"Dispatching invocation %ld", i);
             [[arrayOfNSInvocations objectAtIndex:arrayIndex] invoke]; // Invoke a random invocation from the array.
             
         });
