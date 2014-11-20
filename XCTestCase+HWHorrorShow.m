@@ -55,13 +55,13 @@
         
         
         
-        NSLog(@"\n\n// Invocation number %ld\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n\t[NSThread sleepForTimeInterval:%f];\n\t######### Replace this line with the invocation at index %zd of your invocation array #########\n});\n\n", i, seconds, arrayIndex);        
+        NSLog(@"\n\n// Invocation number %ld\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n\t[NSThread sleepForTimeInterval:%f];\n\t######### Replace this line with the invocation at index %zd of your invocation array #########\n});\n\n", (long)i, seconds, arrayIndex);        
         
         if(i == permutations - 1)NSLog(@"------------------------ End of test documentation ------------------------"); // Note the last round.  
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ // Do the actual async call now.
             [NSThread sleepForTimeInterval:seconds]; // Sleep for the random NSTimeInterval
-            NSLog(@"Dispatching invocation %ld", i);
+            NSLog(@"Dispatching invocation %ld", (long)i);
             [[arrayOfNSInvocations objectAtIndex:arrayIndex] invoke]; // Invoke a random invocation from the array.
             
         });
