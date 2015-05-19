@@ -30,7 +30,7 @@
 
 /**
  
- A category of XCTextCase meant to be used with the XCTestExpectation asynchronous testing method 
+ A category of XCTestCase meant to be used with the XCTestExpectation asynchronous testing method 
  for sending randomized messages at randomized intervals from unknown threads, and documenting the 
  sequence used so that in the event that a crash is found, so you can use the sequence as a permanent test.
  
